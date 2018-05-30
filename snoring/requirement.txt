@@ -1,0 +1,5 @@
+scipy
+os
+pafy
+Tkinter
+numpy
