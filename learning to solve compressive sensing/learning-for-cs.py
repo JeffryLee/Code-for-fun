@@ -48,6 +48,7 @@ optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(cost)
 # Initialize the variables (i.e. assign their default value)
 init = tf.global_variables_initializer()
 lossall = []
+lambdaa = []
 # Start training
 with tf.Session() as sess:
 
@@ -71,7 +72,8 @@ with tf.Session() as sess:
 
     print("Optimization Finished!")
     training_cost = sess.run(cost, feed_dict={X: sensingMat, Y: sensingResult})
-    print("Training cost=", training_cost, "W=", sess.run(w), "b=", sess.run(tf.nn.softmax(g)), '\n')
+    print("Training cost=", training_cost, "W=", sess.run(w), "lambda=", k*sess.run(tf.nn.softmax(g)), '\n')
+    lambdaa = sess.run(tf.nn.softmax(g)) * k
 
 plt.show()
 
